@@ -2,7 +2,10 @@ __pycache__/
 *.py[cod]
 .ipynb_checkpoints
 
-data/
+data/raw
+data/processed/
+
+*.pt
 
 checkpoints/
 
