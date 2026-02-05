@@ -1,0 +1,50 @@
+# DeepCS Configuration File
+
+# --- Data Settings ---
+data:
+  root: "data"
+  batch_size: 32
+  accum_steps: 32
+  num_workers: 0
+  split_ratio: 0.9
+
+# --- Model Architecture ---
+model:
+  in_channels: 12
+  hidden_channels: 64
+  heads: 4
+  dropout: 0.1
+
+# --- Solver Settings ---
+solver:
+  train_iters: 5
+  eval_iters: 50
+  epsilon: 1.0e-6
+
+# --- Training Hyperparameters ---
+train:
+  seed: 42
+  epochs: 200
+  patience: 20
+  min_delta: 0.0001
+  lr: 1.0e-5
+  weight_decay: 1.0e-4
+  clip_grad: 0.5
+  alpha_reg_weight: 0.1
+
+# --- [NEW] Loss Function Settings ---
+loss:
+  # Options: "cognitive" (Ours) | "pure_stress" (Baseline)
+  type: "pure_stress" 
+  
+  # Params for Cognitive Loss
+  t: 0.5
+  margin: 0.5
+  alpha: 1.0
+  lambda_stress: 1.0
+  lambda_rank: 10.0
+
+# --- Logging & Saving ---
+log:
+  save_dir: "checkpoints"
+  exp_name: "exp_rome_3.3_baseline_stress_local_beta_norm"
