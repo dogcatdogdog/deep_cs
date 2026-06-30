@@ -1,0 +1,60 @@
+data:
+  batch_size: 8
+  root: "./data"
+  split_ratio: 0.8
+
+log:
+  exp_name: "lnp_only"
+  save_dir: "./logs"
+
+loss:
+  lambda_kl: 0.0
+  lambda_lnp: 1.0
+  lambda_ar: 0.0
+  lambda_eu: 0.0
+  lambda_scale_lock: 0.0
+  lambda_latent: 0.0
+  lambda_reg: 0.01
+  margin_rank: 0.0644
+  sigma_ratio: 0.9070
+  tau_sharp: 0.1029
+  neg_sample_multiplier: 2.0
+  tau_f: 0.1
+  tau_rw: 0.05
+  tau_z: 1.0
+  type: "unified_orbital_and_metric"
+
+model:
+  dropout: 0.1
+  edge_in_dim: 1
+  heads: 4
+  hidden_channels: 64
+  latent_dim: 128
+  node_in_dim: 11
+  num_layers: 3
+  type: "ablation_force_predictor"
+
+solver:
+  equilibrium_iters: 500
+  initial_lr: 0.5
+  max_disp: 2.0
+  max_step_size: 2.0
+  min_step_size: 0.01
+  type: "asgd_force"
+
+train:
+  clip_grad: 10.0
+  epochs: 500
+  full_load_epoch: 45
+  lr: 0.0005
+  min_delta: 0.0001
+  patience: 50
+  seed: 42
+  weight_decay: 1.0e-05
+  use_curriculum: false
+
+ablation:
+  spatial_type: "GATv2"
+  use_role_stream: false
+  isolate_gradient: true
+  capacity_match: false

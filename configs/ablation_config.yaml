@@ -1,0 +1,63 @@
+data:
+  batch_size: 8
+  root: "./data"
+  split_ratio: 0.8
+  
+log:
+  exp_name: "ablation_exp0_baseline" 
+  save_dir: "./logs"
+  
+loss:
+  lambda_kl: 1.566
+  lambda_lnp: 0.842
+  lambda_ar: 1.400
+  lambda_eu: 0.226
+  lambda_scale_lock: 0.1407
+  lambda_latent: 0.7181
+  lambda_reg: 0.01
+
+  margin_rank: 0.0148
+  sigma_ratio: 1.864
+  tau_sharp: 0.0459
+  neg_sample_multiplier: 2.0
+  
+  tau_f: 0.1
+  tau_rw: 0.05
+  tau_z: 1.0
+  type: "unified_orbital_and_metric"
+  
+model:
+  dropout: 0.1
+  edge_in_dim: 1
+  heads: 4
+  hidden_channels: 64
+  latent_dim: 128
+  node_in_dim: 11
+  num_layers: 3
+  type: "ablation_force_predictor"
+  
+solver:
+  equilibrium_iters: 500
+  initial_lr: 0.5
+  max_disp: 2.0
+  max_step_size: 2.0
+  min_step_size: 0.01
+  type: "asgd_force"
+  
+train:
+  clip_grad: 10.0
+  epochs: 300
+  lr: 0.0005
+  min_delta: 0.0001
+  patience: 20            
+  seed: 42
+  weight_decay: 1.0e-05
+  warmup_epochs: 15 
+  ramp_epochs: 30      
+  use_curriculum: true
+
+ablation:
+  spatial_type: "GATv2"      
+  use_role_stream: true     
+  isolate_gradient: true    
+  capacity_match: false

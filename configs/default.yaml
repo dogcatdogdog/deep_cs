@@ -1,0 +1,44 @@
+data:
+  root: "data"
+  batch_size: 32
+  accum_steps: 32
+  num_workers: 0
+  split_ratio: 0.9
+
+model:
+  in_channels: 12
+  hidden_channels: 64
+  heads: 4
+  dropout: 0.1
+
+solver:
+  train_iters: 15
+  eval_iters: 50
+  epsilon: 1.0e-6
+
+train:
+  seed: 42
+  epochs: 200
+  patience: 20
+  min_delta: 0.0001
+  lr: 5.0e-4
+  weight_decay: 1.0e-4
+  clip_grad: 0.5
+  alpha_reg_weight: 0.1
+
+loss:
+  type: "cognitive"
+  
+  # --- Dynamic Scale & Capacity (V6.0 Core) ---
+  gamma: 1.0          
+  capacity_power: 0.6  
+  # --- Ranking Parameters ---
+  margin: 0.2          
+  alpha: 2.0           
+  
+  lambda_stress: 1.0   
+  lambda_rank: 2.0    
+
+log:
+  save_dir: "checkpoints"
+  exp_name: "exp_rome_v4.0_hard_hub_only"
