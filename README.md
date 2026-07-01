@@ -20,6 +20,10 @@ conda activate deepcs
 
 # 方式 B：pip
 pip install -r requirements.txt
+
+# D3-Force 基线需要 Node.js（如不需要可跳过）
+conda install nodejs    # 或 apt install nodejs
+cd eval && npm install && cd ..
 ```
 
 ### 第三步：恢复数据文件
@@ -149,6 +153,9 @@ deep_cs/
 │   ├── paper_figure.py       论文图表生成（定性对比）
 │   ├── eval_utils.py
 │   ├── layout.py
+│   ├── d3_solver.js          D3-Force 基线（需 Node.js）
+│   ├── package.json          D3-Force 依赖（npm install）
+│   ├── gd_models/            Core-GD / DNN2 神经布局基线
 │   ├── figure_input/         ← 论文图表输入图（.json/.graphml）
 │   ├── benchmark_test_0312/  ← 解压评测用例至此
 │   └── rome_1000/            ← 解压大规模评测用例至此
