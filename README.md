@@ -120,6 +120,12 @@ python export_hpo_results.py
 # 评测（默认 benchmark_test_0312，46 个图）
 cd eval
 python batch_benchmark_pipeline_v2.py
+
+# 生成论文图表（定性对比：基线 vs DeepCS / 消融实验）
+# 需要先在 eval/ 下创建 figure_input/ 目录，放入要可视化的图文件
+mkdir -p eval/figure_input
+cp eval/benchmark_test_0312/*.json eval/figure_input/   # 或用自定义图集
+python paper_figure.py
 ```
 
 ## 项目结构
@@ -140,8 +146,10 @@ deep_cs/
 │   └── processed/            ← 自动生成缓存
 ├── eval/                     评测流水线、指标、布局引擎
 │   ├── batch_benchmark_pipeline_v2.py
+│   ├── paper_figure.py       论文图表生成（定性对比）
 │   ├── eval_utils.py
 │   ├── layout.py
+│   ├── figure_input/         ← 论文图表输入图（.json/.graphml）
 │   ├── benchmark_test_0312/  ← 解压评测用例至此
 │   └── rome_1000/            ← 解压大规模评测用例至此
 ├── hpo_results/              HPO 结果数据库 & Pareto 前沿
@@ -167,6 +175,7 @@ deep_cs/
 | Rome 图集 | `rome-graphml.tgz` | `data/raw/rome/` | 训练数据 |
 | Benchmark 用例 | `benchmark_test_0312.zip` | `eval/benchmark_test_0312/` | 默认评测（46 图） |
 | Rome 评测集 | `rome_1000.zip` | `eval/rome_1000/` | 大规模评测（1000 图） |
+| 论文图表输入 | 用户自选 | `eval/figure_input/` | `paper_figure.py` 输入（可从 `benchmark_test_0312` 复制） |
 | SuiteSparse | 自动下载 | `data/raw/suitesparse/` | 训练数据补充 |
 | 预训练模型 | `checkpoints.tar.gz` | `logs/` | 跳过训练直接评测 |
 | 预计算评测结果 | `eval_out.tar.gz` | `eval_out/` | 直接获得论文图表 |
