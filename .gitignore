@@ -32,3 +32,6 @@ data/raw/*
 !data/raw/.gitkeep
 logs/*
 !logs/.gitkeep
+
+# Node
+node_modules/

@@ -26,3 +26,5 @@ dependencies:
       - triton>=3.0.0
       - ssgetpy>=1.0
       - wandb>=0.15.0
+      - fa2>=0.3.5
+      - pygraphviz>=1.11
